@@ -29,7 +29,7 @@ export class AppShell extends LitElement {
 
 	render() {
 		return html`
-			<header class="p-3 flex items-center gap-2 justify-between">
+			<header class="p-3 flex items-center justify-between">
 				<md-icon-button inert
 					><md-icon>${unsafeSVG(SVG_LOGO)}</md-icon></md-icon-button
 				>
@@ -42,11 +42,17 @@ export class AppShell extends LitElement {
 					><md-icon>${SVG_GITHUB}</md-icon></md-icon-button
 				>
 			</header>
-			<div class="m-5 flex flex-col gap-2 flex-1">
+			<div
+				class="m-12 flex flex-col gap-3 flex-1 ml-auto mr-auto"
+				style="width:min(calc(100% - 24px), 500px)"
+			>
 				<md-filled-text-field
-					supporting-text=${store.input
-						? ''
-						: 'Write human-readable keys e.g. "ctrl shift f"'}
+					?error=${store.input && store.errors.length}
+					supporting-text="${store.input
+						? store.errors.length
+							? `unknown keys:\u00A0  ${store.errors.join('\u00A0\u00A0\u00A0')}`
+							: store.keysOutput.join('\u00A0\u00A0\u00A0')
+						: 'Write human-readable keys e.g. "ctrl shift f"'}"
 					${bindInput(store, 'input')}
 				>
 					<md-icon-button
@@ -66,18 +72,17 @@ export class AppShell extends LitElement {
 				${store.input
 					? store.errors.length
 						? html`<!-- -->
+								<!--
 								<div style="color:var(--md-sys-color-error)" class="flex gap-2">
 									<span>unknown keys:</span>
 									<div class="flex gap-2">
 										${store.errors.map((error) => html`<b>${error}</b>`)}
 									</div>
 								</div>
+-->
 								<!-- -->`
 						: html`<!-- -->
-								<md-outlined-text-field
-									value=${store.output}
-									supporting-text=${store.keysOutput.join('\u00A0\u00A0\u00A0')}
-								>
+								<md-outlined-text-field value=${store.output}>
 									<md-icon-button
 										slot="trailing-icon"
 										@click=${() => {
