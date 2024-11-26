@@ -43,7 +43,7 @@ export class AppShell extends LitElement {
 				>
 			</header>
 			<div
-				class="m-12 flex flex-col gap-3 flex-1 ml-auto mr-auto"
+				class="m-12 flex flex-col gap-3 flex-1 ml-auto mr-auto justify-center"
 				style="width:min(calc(100% - 24px), 500px)"
 			>
 				<md-filled-text-field
@@ -67,34 +67,21 @@ export class AppShell extends LitElement {
 						><md-icon>close</md-icon></md-icon-button
 					>
 				</md-filled-text-field>
-				<p class="mt-0"></p>
 
-				${store.input
-					? store.errors.length
-						? html`<!-- -->
-								<!--
-								<div style="color:var(--md-sys-color-error)" class="flex gap-2">
-									<span>unknown keys:</span>
-									<div class="flex gap-2">
-										${store.errors.map((error) => html`<b>${error}</b>`)}
-									</div>
-								</div>
--->
-								<!-- -->`
-						: html`<!-- -->
-								<md-outlined-text-field value=${store.output}>
-									<md-icon-button
-										slot="trailing-icon"
-										@click=${() => {
-											copyToClipboard(store.output);
-										}}
-									>
-										<md-icon>content_copy</md-icon>
-									</md-icon-button>
-								</md-outlined-text-field>
-
-								<!-- -->`
-					: null}
+				<md-outlined-text-field
+					value=${store.output}
+					?invisible=${!store.input || store.errors.length}
+					?inert=${!store.input || store.errors.length}
+				>
+					<md-icon-button
+						slot="trailing-icon"
+						@click=${() => {
+							copyToClipboard(store.output);
+						}}
+					>
+						<md-icon>content_copy</md-icon>
+					</md-icon-button>
+				</md-outlined-text-field>
 			</div>
 
 			<footer class="p-2">
