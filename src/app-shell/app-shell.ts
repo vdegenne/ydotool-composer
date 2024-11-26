@@ -48,7 +48,19 @@ export class AppShell extends LitElement {
 						? ''
 						: 'Write human-readable keys e.g. "ctrl shift f"'}
 					${bindInput(store, 'input')}
-				></md-filled-text-field>
+				>
+					<md-icon-button
+						slot="trailing-icon"
+						@click=${(event: PointerEvent) => {
+							const target = event.target as HTMLInputElement;
+							store.input = '';
+							store.updateComplete.then(() => {
+								target.parentElement.focus();
+							});
+						}}
+						><md-icon>close</md-icon></md-icon-button
+					>
+				</md-filled-text-field>
 				<p class="mt-0"></p>
 
 				${store.input

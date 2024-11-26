@@ -9,7 +9,7 @@ window.addEventListener('keydown', async (e) => {
 		return;
 	}
 	if (e.key === 'd') {
-		(await getThemeStore()).toggleMode();
+		// (await getThemeStore()).toggleMode();
 	}
 });
 

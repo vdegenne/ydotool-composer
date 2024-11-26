@@ -51,14 +51,14 @@ export class AppStore extends ReactiveController {
 			].join(' ');
 			this.keysOutput = keys;
 
-			console.log(
-				`input: "${this.input}"`,
-				inputs,
-				keys,
-				outputs,
-				this.output,
-				this.keysOutput,
-			);
+			// console.log(
+			// 	`input: "${this.input}"`,
+			// 	inputs,
+			// 	keys,
+			// 	outputs,
+			// 	this.output,
+			// 	this.keysOutput,
+			// );
 		}
 	}
 }
