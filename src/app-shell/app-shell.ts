@@ -44,6 +44,9 @@ export class AppShell extends LitElement {
 			</header>
 			<div class="m-5 flex flex-col gap-2 flex-1">
 				<md-filled-text-field
+					supporting-text=${store.input
+						? ''
+						: 'Write human-readable keys e.g. "ctrl shift f"'}
 					${bindInput(store, 'input')}
 				></md-filled-text-field>
 				<p class="mt-0"></p>
