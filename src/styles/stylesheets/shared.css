@@ -1,0 +1,46 @@
+/* @tailwind base; */
+@tailwind utilities;
+/* @tailwind components; */
+
+[hidden] {
+	display: none;
+}
+
+[invisible] {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.primary {
+	color: var(--md-sys-color-primary);
+}
+
+[error] {
+	--md-sys-color-primary: var(--md-sys-color-error);
+	--md-sys-color-on-primary: var(--md-sys-color-on-error);
+	--md-sys-color-surface-container-low: var(--md-sys-color-error-container);
+	--md-sys-color-on-surface: var(--md-sys-color-on-error-container);
+}
+
+/* .flex {
+	display: flex;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+.centered {
+	text-align: center;
+} */
+
+.jp {
+	font-family: 'Noto Serif JP';
+	font-family: 'Zen Maru Gothic';
+	position: relative;
+	top: -2px;
+}
