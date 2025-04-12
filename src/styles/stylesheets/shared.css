@@ -1,6 +1,5 @@
-/* @tailwind base; */
-@tailwind utilities;
-/* @tailwind components; */
+@import 'tailwindcss/theme';
+@import 'tailwindcss/utilities';
 
 [hidden] {
 	display: none;

@@ -47,6 +47,7 @@ export class AppShell extends LitElement {
 				style="width:min(calc(100% - 24px), 500px)"
 			>
 				<md-filled-text-field
+					autofocus
 					?error=${store.input && store.errors.length}
 					supporting-text="${store.input
 						? store.errors.length
@@ -68,20 +69,44 @@ export class AppShell extends LitElement {
 					>
 				</md-filled-text-field>
 
-				<md-outlined-text-field
-					value=${store.output}
+				<div
 					?invisible=${!store.input || store.errors.length}
-					?inert=${!store.input || store.errors.length}
+					class="flex flex-col gap-3"
 				>
-					<md-icon-button
-						slot="trailing-icon"
-						@click=${() => {
-							copyToClipboard(store.output);
-						}}
+					<md-outlined-text-field
+						value=${store.output}
+						?inert=${!store.input || store.errors.length}
 					>
-						<md-icon>content_copy</md-icon>
-					</md-icon-button>
-				</md-outlined-text-field>
+						${false
+							? html`
+									<md-icon-button
+										slot="trailing-icon"
+										@click=${() => {
+											copyToClipboard(store.output);
+										}}
+									>
+										<md-icon>content_copy</md-icon>
+									</md-icon-button>
+								`
+							: null}
+					</md-outlined-text-field>
+					<div class="flex gap-3">
+						<md-filled-tonal-button
+							@click="${() => copyToClipboard(store.output)}"
+							style="width:calc(100% / 2 - 6px)"
+						>
+							<md-icon slot="icon">content_copy</md-icon>
+							<span>${store.output}</span>
+						</md-filled-tonal-button>
+						<md-filled-tonal-button
+							@click="${() => copyToClipboard('ydotool key ' + store.output)}"
+							style="width:calc(100% / 2 - 6px)"
+						>
+							<md-icon slot="icon">content_copy</md-icon>
+							<span>ydotool key ${store.output}</span>
+						</md-filled-tonal-button>
+					</div>
+				</div>
 			</div>
 
 			<footer class="p-2">
