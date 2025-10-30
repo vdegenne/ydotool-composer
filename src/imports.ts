@@ -7,3 +7,8 @@ export async function getSettingsDialog() {
 	const {settingsDialog} = await import('./settings/settings-dialog.js');
 	return settingsDialog;
 }
+
+export async function openSearchKeyCodeDialog() {
+	const {searchKeyDialog} = await import('./search-key-dialog.js');
+	searchKeyDialog.show();
+}

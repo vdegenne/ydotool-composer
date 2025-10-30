@@ -43,3 +43,11 @@
 	position: relative;
 	top: -2px;
 }
+
+md-dialog[fullscreen] {
+	max-width: 100vw;
+	max-height: 100vh;
+	width: 100%;
+	height: 100%;
+	--md-dialog-container-shape: 0;
+}

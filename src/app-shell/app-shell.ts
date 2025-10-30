@@ -9,6 +9,7 @@ import {store} from '../store.js';
 import styles from './app-shell.css?inline';
 import {bindInput} from 'relit';
 import {copyToClipboard} from '../utils.js';
+import {openSearchKeyCodeDialog} from '../imports.js';
 
 declare global {
 	interface Window {
@@ -33,14 +34,15 @@ export class AppShell extends LitElement {
 				<md-icon-button inert
 					><md-icon>${unsafeSVG(SVG_LOGO)}</md-icon></md-icon-button
 				>
-				<span style="color:var(--md-sys-color-outline-variant)"
-					>ydotool-composer</span
+				<span
+					style="color:var(--md-sys-color-outline-variant)"
+					class="flex-1 pl-4"
 				>
-				<md-icon-button
-					href="https://github.com/vdegenne/ydotool-composer"
-					target="_blank"
-					><md-icon>${SVG_GITHUB}</md-icon></md-icon-button
-				>
+					ydotool-composer
+				</span>
+				<md-icon-button @click=${openSearchKeyCodeDialog}>
+					<md-icon>search</md-icon>
+				</md-icon-button>
 			</header>
 			<div
 				class="m-12 flex flex-col gap-3 flex-1 ml-auto mr-auto justify-center"
@@ -109,11 +111,16 @@ export class AppShell extends LitElement {
 				</div>
 			</div>
 
-			<footer class="p-2">
+			<footer class="p-2 flex justify-between">
 				<md-text-button
 					href="https://github.com/ReimuNotMoe/ydotool"
 					target="_blank"
 					>ydotool @ github</md-text-button
+				>
+				<md-icon-button
+					href="https://github.com/vdegenne/ydotool-composer"
+					target="_blank"
+					><md-icon>${SVG_GITHUB}</md-icon></md-icon-button
 				>
 			</footer>
 		`;

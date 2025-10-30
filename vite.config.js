@@ -24,11 +24,11 @@ plugins.push(
 	materialAll(),
 	mdicon2svg({
 		variant: 'rounded',
-		include: [
-			'src/**/*.ts',
-			'node_modules/@vdegenne/material-color-helpers/lib/elements/**/*.js',
-		],
-	})
+		// include: [
+		// 	'src/**/*.ts',
+		// 	'node_modules/@vdegenne/material-color-helpers/lib/elements/**/*.js',
+		// ],
+	}),
 );
 
 if (process.env.NODE_ENV === 'production') {
@@ -45,7 +45,7 @@ if (process.env.NODE_ENV === 'production') {
 		plugins.push(
 			viteSingleFile({
 				useRecommendedBuildConfig: false,
-			})
+			}),
 		);
 	} catch {}
 }
@@ -84,7 +84,7 @@ try {
 					},
 				],
 			},
-		})
+		}),
 	);
 } catch {}
 

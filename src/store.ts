@@ -1,12 +1,19 @@
+import {FormBuilder} from '@vdegenne/forms/FormBuilder.js';
 import {ReactiveController, state} from '@snar/lit';
 import {type PropertyValues} from 'lit';
 import {saveToLocalStorage} from 'snar-save-to-local-storage';
-import codes from './input-event-codes.json';
+import codes from './input-event-codes.json' with {type: 'json'};
+
+export {codes};
 
 @saveToLocalStorage('ydotool:store')
 export class AppStore extends ReactiveController {
 	@state() input = '';
 	@state() errors: string[] = [];
+
+	@state() search = '';
+
+	F = new FormBuilder(this);
 
 	keysOutput: string[] = [];
 	output = '';
